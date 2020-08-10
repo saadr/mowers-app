@@ -7,7 +7,7 @@ from mowers.utils.output_generator import OutputGenerator
 
 log = logging.getLogger(__name__)
 NUM_WORKERS = 2
-input_path = '../tests/resources/input.txt'
+input_path = 'sample_input.txt'
 output_generator = OutputGenerator()
 
 
