@@ -5,7 +5,9 @@ import mowers.utils.input_parser as input_parser
 from mowers.movement.movement_manager import MovementManager
 from mowers.utils.output_generator import OutputGenerator
 
+logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
+
 NUM_WORKERS = 2
 input_path = 'sample_input.txt'
 output_generator = OutputGenerator()
@@ -32,7 +34,7 @@ def main():
                     try:
                         (x, y, orientation) = future.result()
                     except Exception as e:
-                        log.error('Error occured while getting mower final position ' + str(e))
+                        log.error('Error occured while getting mower final position ', e)
                     else:
                         output_generator.append_result(x, y, orientation, order)
                         completed += 1
@@ -41,10 +43,10 @@ def main():
                             output_generator.print_in_order()
 
     except FileNotFoundError:
-        log.error('Specified file path could not be found')
+        log.error('Specified input file path could not be found')
         return 1
     except Exception as e:
-        print('Some error occurred, ' + str(e))
+        log.error('Some error occurred', e)
         return 1
     return 0
 

@@ -7,7 +7,9 @@ import mowers.movement.movement_helper as movement_helper
 import mowers.utils.validation_helper as validation_helper
 from mowers.model.models import Lawn, Mower, Instructions
 
+logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
+
 
 
 class MovementManager:
@@ -43,12 +45,12 @@ class MovementManager:
         next_position = movement_helper.get_next_position(mower.position, mower.orientation)
 
         if not validation_helper.is_valid_position(next_position.x, next_position.y, self.lawn.max_x, self.lawn.max_y):
-            log.info(f"Cancelling movement exceeding lawn surface. Position :({next_position.x}, {next_position.y})")
+            log.warning("Cancelling movement exceeding lawn surface. Position :({next_position.x}, {next_position.y})")
             return mower.position
 
         with self.lock:
             if next_position in self.occupied_positions:
-                log.info(f"Cancelling movement that would cause mowers overlap. Position :({next_position.x}, {next_position.y})")
+                log.warning(f"Cancelling movement that would cause mowers overlap. Position :({next_position.x}, {next_position.y})")
                 return mower.position
 
             self.update_occupied_position(mower.position, next_position)
