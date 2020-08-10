@@ -4,7 +4,7 @@ import logging
 import threading
 
 import mowers.movement.movement_helper as movement_helper
-import mowers.util.validation_helper as validation_helper
+import mowers.utils.validation_helper as validation_helper
 from mowers.model.models import Lawn, Mower, Instructions
 
 log = logging.getLogger(__name__)

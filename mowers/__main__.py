@@ -1,9 +1,9 @@
 import concurrent.futures
 import logging
 
-import mowers.util.input_parser as input_parser
+import mowers.utils.input_parser as input_parser
 from mowers.movement.movement_manager import MovementHandler
-from mowers.util.output_generator import OutputGenerator
+from mowers.utils.output_generator import OutputGenerator
 
 log = logging.getLogger(__name__)
 NUM_WORKERS = 2
