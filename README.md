@@ -6,6 +6,7 @@ Entry point of the program : `app.py`.
 Input data file            : `sample_input.txt`
 
 ```shell
+cd mowers-app
 python app.py
 ```
 
