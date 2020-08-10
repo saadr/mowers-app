@@ -2,6 +2,7 @@ import unittest
 from mowers.model.models import Position, Mower, Lawn, Instructions, Orientations
 from mowers.movement.movement_manager import MovementManager
 
+
 class TestMovementManager(unittest.TestCase):
 
     def test_process_instruction(self):
@@ -16,7 +17,6 @@ class TestMovementManager(unittest.TestCase):
 
         self.assertEqual(vars(mower.position), vars(Position(8, 9)))
         self.assertEqual(mower.orientation, Orientations.S)
-
 
     def test_process_mower(self):
         mower_1 = Mower(1, 2, 'N', list('LFLFLFLFF'))

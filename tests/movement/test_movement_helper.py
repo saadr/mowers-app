@@ -19,7 +19,6 @@ class TestMovementHelper(unittest.TestCase):
 
     def test_next_position(self):
         position = Position(10, 10)
-        pos = movement_helper.get_next_position(position, Orientations.W)
         self.assertEqual(vars(movement_helper.get_next_position(position, Orientations.W)), vars(Position(9, 10)))
         self.assertEqual(vars(movement_helper.get_next_position(position, Orientations.E)), vars(Position(11, 10)))
         self.assertEqual(vars(movement_helper.get_next_position(position, Orientations.S)), vars(Position(10, 9)))

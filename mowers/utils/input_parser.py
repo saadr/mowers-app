@@ -20,7 +20,7 @@ def parse_mower(start_line, instruction_line, lawn):
         raise Exception(f"Input parsing error. Mower position cannot be outside [(0,0), ({lawn.max_x}, {lawn.max_y})]. Line: {start_line}")
 
     orientation = start_split[2]
-    if not validation_helper.is_valid_direction(orientation):
+    if not validation_helper.is_valid_orientation(orientation):
         raise Exception(f"Input parsing error. Invalid mower orientation. Line: {start_line}")
 
     return Mower(start_x, start_y, orientation, list(instruction_line.rstrip()))

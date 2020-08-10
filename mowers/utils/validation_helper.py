@@ -1,7 +1,7 @@
 from mowers.model.models import Orientations, Instructions
 
 
-def is_valid_direction(orientation):
+def is_valid_orientation(orientation):
     return orientation in Orientations.__members__
 
 
