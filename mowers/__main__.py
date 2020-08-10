@@ -19,7 +19,6 @@ def main():
 
             with concurrent.futures.ThreadPoolExecutor(max_workers=NUM_WORKERS) as executor:
                 futures_map = {}
-                output = []
                 mower_order = 0
                 for position_line in f:
                     instruction_line = f.readline()
