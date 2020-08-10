@@ -3,23 +3,43 @@ import logging
 
 import mowers.input_parser as input_parser
 from mowers.movement_manager import MovementHandler
+from mowers.output_generator import OutputGenerator
 
 log = logging.getLogger(__name__)
 NUM_WORKERS = 2
+input_path = '../tests/resources/input.txt'
+output_generator = OutputGenerator()
 
 
 def main():
-    path = '../tests/resources/input.txt'
     try:
-        with open(path) as f:
+        with open(input_path) as f:
             lawn = input_parser.parse_lawn(f.readline())
             handler = MovementHandler(lawn)
 
             with concurrent.futures.ThreadPoolExecutor(max_workers=NUM_WORKERS) as executor:
+                futures_map = {}
+                output = []
+                mower_order = 0
                 for position_line in f:
                     instruction_line = f.readline()
                     mower = input_parser.parse_mower(position_line, instruction_line, lawn)
-                    executor.submit(handler.process_mower(mower))
+                    futures_map[executor.submit(handler.process_mower, mower)] = mower_order
+                    mower_order += 1
+
+                completed = 0
+                for future in concurrent.futures.as_completed(futures_map):
+                    order = futures_map[future]
+                    try:
+                        (x, y, orientation) = future.result()
+                    except Exception as e:
+                        log.error('Error occured while getting mower final position ' + str(e))
+                    else:
+                        output_generator.append_result(x, y, orientation, order)
+                        completed += 1
+                        if completed == len(futures_map):
+                            log.info("All mowers done moving.")
+                            output_generator.print_in_order()
 
     except FileNotFoundError:
         log.error('Specified file path could not be found')

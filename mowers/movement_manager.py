@@ -29,7 +29,7 @@ class MovementHandler:
         for instruction in mower.instructions:
             self.process_instruction(mower, instruction)
 
-        print(mower.position)
+        return mower.position.x, mower.position.y, mower.orientation.value
 
     def process_instruction(self, mower: Mower, instruction: Instructions):
         if instruction == Instructions.L:
