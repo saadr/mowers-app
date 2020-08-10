@@ -1,5 +1,5 @@
-from mowers.models import Lawn, Mower, Position, Orientations
-from mowers import validation_helper
+from mowers.model.models import Lawn, Mower
+from mowers.util import validation_helper
 
 
 def parse_lawn(lawn_line):

@@ -1,4 +1,4 @@
-from mowers.models import Position, Orientations
+from mowers.model.models import Position, Orientations
 
 
 def get_left_orientation(orientation: Orientations):

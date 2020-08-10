@@ -1,4 +1,4 @@
-from mowers.models import Orientations, Instructions
+from mowers.model.models import Orientations, Instructions
 
 
 def is_valid_direction(orientation):

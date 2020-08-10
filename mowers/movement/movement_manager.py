@@ -3,9 +3,9 @@ from __future__ import with_statement
 import logging
 import threading
 
-import mowers.movement_helper as movement_helper
-import mowers.validation_helper as validation_helper
-from mowers.models import Lawn, Mower, Instructions
+import mowers.movement.movement_helper as movement_helper
+import mowers.util.validation_helper as validation_helper
+from mowers.model.models import Lawn, Mower, Instructions
 
 log = logging.getLogger(__name__)
 
