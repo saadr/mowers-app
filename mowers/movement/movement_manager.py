@@ -10,7 +10,7 @@ from mowers.model.models import Lawn, Mower, Instructions
 log = logging.getLogger(__name__)
 
 
-class MovementHandler:
+class MovementManager:
     def __init__(self, lawn: Lawn):
         if lawn is None:
             raise Exception("Lawn should not be None.")

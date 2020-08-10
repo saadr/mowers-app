@@ -2,7 +2,7 @@ import concurrent.futures
 import logging
 
 import mowers.utils.input_parser as input_parser
-from mowers.movement.movement_manager import MovementHandler
+from mowers.movement.movement_manager import MovementManager
 from mowers.utils.output_generator import OutputGenerator
 
 log = logging.getLogger(__name__)
@@ -15,7 +15,7 @@ def main():
     try:
         with open(input_path) as f:
             lawn = input_parser.parse_lawn(f.readline())
-            handler = MovementHandler(lawn)
+            handler = MovementManager(lawn)
 
             with concurrent.futures.ThreadPoolExecutor(max_workers=NUM_WORKERS) as executor:
                 futures_map = {}
